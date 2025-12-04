@@ -1,8 +1,14 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from openai import OpenAI
 import requests
-import time
+from bs4 import BeautifulSoup
+from dotenv import load_dotenv
+import os
+from pathlib import Path
+
+load_dotenv()
 
 app = FastAPI(title="Code Assistant API")
 
@@ -14,7 +20,25 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-API_URL = "https://api.huggingface.co/models/Salesforce/codegen-350M-mono"
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+def load_web_content(urls):
+    content = ""
+    for url in urls:
+        try:
+            response = requests.get(url, timeout=10)
+            soup = BeautifulSoup(response.text, 'html.parser')
+            content += soup.get_text()[:2000] + "\n\n"
+        except:
+            pass
+    return content
+
+URLS = [
+    "https://www.w3schools.com/python/",
+    "https://www.w3schools.com/js/",
+]
+
+KNOWLEDGE_BASE = load_web_content(URLS)
 
 class CodeRequest(BaseModel):
     prompt: str
@@ -22,33 +46,20 @@ class CodeRequest(BaseModel):
 
 @app.get("/")
 async def root():
-    return {"message": "Code Assistant API is running!"}
+    return {"message": "RAG Code Assistant"}
 
 @app.post("/api/generate")
 async def generate_code(request: CodeRequest):
-    try:
-        full_prompt = f"# {request.language}\n# {request.prompt}\n"
-        
-        response = requests.post(
-            API_URL,
-            headers={"Content-Type": "application/json"},
-            json={"inputs": full_prompt, "parameters": {"max_length": 200, "temperature": 0.7}}
-        )
-        
-        if response.status_code == 503:
-            time.sleep(20)
-            response = requests.post(
-                API_URL,
-                headers={"Content-Type": "application/json"},
-                json={"inputs": full_prompt, "parameters": {"max_length": 200, "temperature": 0.7}}
-            )
-        
-        if response.status_code == 200:
-            result = response.json()
-            generated_code = result[0]['generated_text'] if isinstance(result, list) else result.get('generated_text', '')
-            return {"code": generated_code, "language": request.language}
-        else:
-            raise HTTPException(status_code=500, detail=f"Hugging Face API error: {response.text}")
+    augmented_prompt = f"Context:\n{KNOWLEDGE_BASE}\n\nQuery: Write {request.language} code to {request.prompt}"
     
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "system", "content": "You are a coding assistant."},
+            {"role": "user", "content": augmented_prompt}
+        ],
+        temperature=0.7,
+        max_tokens=500
+    )
+    
+    return {"code": response.choices[0].message.content, "language": request.language}
