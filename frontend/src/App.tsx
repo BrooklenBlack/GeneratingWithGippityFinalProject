@@ -55,7 +55,7 @@ function App() {
       }}>
         <header style={{ marginBottom: '30px', textAlign: 'center' }}>
           <h1 style={{ fontSize: '36px', marginBottom: '10px' }}>
-            🤖 AI Code Assistant
+            AI Code Assistant
           </h1>
           <p style={{ color: '#888', fontSize: '14px' }}>
             Powered by Hugging Face CodeGen | Built with React + FastAPI
@@ -73,7 +73,7 @@ function App() {
         }}>
           <div style={{ marginBottom: '15px' }}>
             <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold' }}>
-              📝 Describe what code you want:
+              Input a prompt:
             </label>
             <input
               type="text"
@@ -138,7 +138,7 @@ function App() {
                 transition: 'background-color 0.2s'
               }}
             >
-              {loading ? '⏳ Generating...' : '✨ Generate Code'}
+              {loading ? 'Generating...' : 'Generate Code'}
             </button>
           </div>
 
@@ -151,7 +151,7 @@ function App() {
               borderRadius: '4px',
               fontSize: '14px'
             }}>
-              ⚠️ {error}
+              {error}
             </div>
           )}
         </div>
