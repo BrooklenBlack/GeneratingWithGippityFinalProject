@@ -4,6 +4,23 @@
 
 AI code generator that uses RAG (Retrieval-Augmented Generation) to create Python code.
 
+## Technology Stack
+
+**Frontend:**
+- React with TypeScript
+- Axios for API requests
+
+**Backend:**
+- FastAPI (Python)
+- OpenAI GPT-4o-mini
+- BeautifulSoup4 for web scraping
+- Python-dotenv for environment management
+
+**Architecture:**
+- Retrieval-Augmented Generation (RAG)
+- REST API
+- Web scraping from Python documentation sites
+
 ## What You Need to Download
 
 1. **Python 3.11 or newer**
