@@ -35,7 +35,10 @@ def load_web_content(urls):
 
 URLS = [
     "https://www.w3schools.com/python/",
-    "https://www.w3schools.com/js/",
+    "https://docs.python.org/3/tutorial/",
+    "https://realpython.com/python-basics/",
+    "https://www.geeksforgeeks.org/python-programming-language/",
+    "https://www.programiz.com/python-programming",
 ]
 
 KNOWLEDGE_BASE = load_web_content(URLS)
