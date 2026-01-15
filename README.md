@@ -84,7 +84,7 @@ npm install
 ```powershell
 cd backend
 .\venv\Scripts\Activate.ps1
-uvicorn app.main:app --reload
+python -m uvicorn app.main:app --reload
 ```
 
 **Terminal 2 (Frontend):**
