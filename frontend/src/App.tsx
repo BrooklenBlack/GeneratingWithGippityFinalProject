@@ -3,9 +3,11 @@ import axios from 'axios';
 
 function App() {
   const [prompt, setPrompt] = useState('');
-  const [response, setResponse] = useState('');
+  const [code, setCode] = useState('');
+  const [explanation, setExplanation] = useState('');
+  const [output, setOutput] = useState('');
   const [loading, setLoading] = useState(false);
-  const language = 'python';
+  const [language, setLanguage] = useState('python');
 
   const generate = async () => {
     setLoading(true);
@@ -14,12 +16,18 @@ function App() {
         prompt,
         language
       });
-      setResponse(res.data.code);
+      setCode(res.data.code);
+      setExplanation(res.data.explanation);
+      setOutput(res.data.output);
     } catch (error) {
-      setResponse('Error generating code');
+      setCode('Error generating code. Please try again.');
+      setOutput('Error generating output. Please try again.');
+      setExplanation('Error generating explaination. Please try again.');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
+
 
   return (
     <div style={{ padding: '40px', fontFamily: 'Arial' }}>
@@ -29,17 +37,31 @@ function App() {
         type="text"
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
-        placeholder="What code do you want?"
+        placeholder="Please type your request here..."
         style={{ width: '500px', padding: '10px', marginRight: '10px' }}
       />
       
-      <button onClick={generate} disabled={loading} style={{ padding: '10px 20px', marginLeft: '10px' }}>
+      <button onClick={generate} disabled={loading} style={{ padding: '10px 20px', marginTop: '10px' }}>
         {loading ? 'Generating...' : 'Generate'}
       </button>
+
+      <select value={language} onChange={(e) => setLanguage(e.target.value)}style={{ marginLeft: '20px', padding: '10px' }}>
+        <option value="python">Python</option>
+        <option value="java">Java</option>
+      </select>
       
       <pre style={{ marginTop: '20px', padding: '20px', background: '#f4f4f4', whiteSpace: 'pre-wrap' }}>
-        {response || 'Your code will appear here...'}
+        {code || 'Your code will appear here...'}
       </pre>
+
+      <pre style={{ marginTop: '20px', padding: '20px', background: '#f4f4f4', whiteSpace: 'pre-wrap' }}>
+        {output || 'Your output will appear here...'}
+      </pre>
+
+      <pre style={{ marginTop: '20px', padding: '20px', background: '#f4f4f4', whiteSpace: 'pre-wrap' }}>
+        {explanation || 'Your explanation will appear here...'}
+      </pre>
+
     </div>
   );
 }
