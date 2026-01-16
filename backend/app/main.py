@@ -45,7 +45,17 @@ URLS = [
     "https://www.w3schools.com/java/",
     "https://www.codecademy.com/learn/learn-java",
     "https://www.learnjavaonline.org/#google_vignette",
-    "https://learn.oracle.com/ols/learning-path/oracle-java-foundations/88323/79726"
+    "https://learn.oracle.com/ols/learning-path/oracle-java-foundations/88323/79726",
+    "https://www.geeksforgeeks.org/cpp/c-plus-plus/",
+    "https://www.w3schools.com/cpp/",
+    "https://www.codecademy.com/catalog/language/c-plus-plus",
+    "https://www.learncpp.com/",
+    "https://www.programiz.com/cpp-programming",
+    "https://www.codecademy.com/learn/introduction-to-javascript",
+    "https://www.w3schools.com/js/",
+    "https://www.geeksforgeeks.org/javascript/javascript-tutorial/",
+    "https://web.dev/learn/javascript",
+    "https://www.learn-js.org/"
 ]
 
 KNOWLEDGE_BASE = load_web_content(URLS)
