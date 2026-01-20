@@ -53,13 +53,13 @@ function App() {
         <option value="javascript">JavaScript</option>
       </select>
 
-      {/* <select value={language} onChange={(e) => setLanguage(e.target.value)}style={{ marginLeft: '20px', padding: '10px' }}>
+      {/* { <select value={language} onChange={(e) => setLanguage(e.target.value)}style={{ marginLeft: '20px', padding: '10px' }}>
         <option value=""disabled>Frontend</option>
         <option value="">Python</option>
         <option value="">Java</option>
         <option value="">C++</option>
         <option value="javscript">JavaScript</option>
-      </select> */}
+      </select> } */}
       
       <pre style={{ marginTop: '20px', padding: '20px', background: '#f4f4f4', whiteSpace: 'pre-wrap' }}>
         {code || 'Your code will appear here...'}
