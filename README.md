@@ -2,7 +2,7 @@
 
 # Code Assistant
 
-AI code generator that uses RAG (Retrieval-Augmented Generation) to create Python code.
+AI code generator that uses RAG (Retrieval-Augmented Generation) to create backend and frontend code.
 
 ## Technology Stack
 
@@ -19,7 +19,7 @@ AI code generator that uses RAG (Retrieval-Augmented Generation) to create Pytho
 **Architecture:**
 - Retrieval-Augmented Generation (RAG)
 - REST API
-- Web scraping from Python documentation sites
+- Web scraping from backedn and frontend documentation sites
 
 ## What You Need to Download
 
@@ -97,10 +97,11 @@ Browser should open to http://localhost:3000
 
 ## How to Use
 
-1. Type what Python code you want in the text box
-2. Click "Generate"
-3. Wait a few seconds
-4. Your code appears below
+1. Type what code you want in the text box
+2. Choose your language
+3. Click "Generate"
+4. Wait a few seconds
+5. Your code appears below
 
 ## Team
 
