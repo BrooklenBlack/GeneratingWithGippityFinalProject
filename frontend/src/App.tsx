@@ -28,38 +28,48 @@ function App() {
     }
   };
 
+  const handlePromptChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setPrompt(e.target.value);
+
+    e.target.style.height = 'auto'; 
+    e.target.style.height = `${e.target.scrollHeight}px`;
+  };  
+
 
   return (
     <div style={{ padding: '40px', fontFamily: 'Arial' }}>
       <h1>Code Assistant</h1>
       
-      <input
-        type="text"
+      <textarea
         value={prompt}
-        onChange={(e) => setPrompt(e.target.value)}
+        onChange={handlePromptChange}
         placeholder="Please type your request here..."
-        style={{ width: '500px', padding: '10px', marginRight: '10px' }}
+        rows={1}
+        style={{ width: '500px', padding: '10px', marginRight: '10px', resize: 'none', overflow: 'hidden'}}
       />
       
-      <button onClick={generate} disabled={loading} style={{ padding: '10px 20px', marginTop: '10px' }}>
+      <div>
+        <button onClick={generate} disabled={loading} style={{ padding: '10px 20px', marginTop: '10px' }}>
         {loading ? 'Generating...' : 'Generate'}
-      </button>
+        </button>
 
-      <select value={language} onChange={(e) => setLanguage(e.target.value)}style={{ marginLeft: '20px', padding: '10px' }}>
-        <option value=""disabled>Backend</option>
-        <option value="python">Python</option>
-        <option value="java">Java</option>
-        <option value="C++">C++</option>
-        <option value="javascript">JavaScript</option>
-      </select>
+        <select value={language} onChange={(e) => setLanguage(e.target.value)}style={{ marginLeft: '20px', padding: '10px' }}>
+          <option value=""disabled>Backend</option>
+          <option value="python">Python</option>
+          <option value="java">Java</option>
+          <option value="C++">C++</option>
+          <option value="javascript">JavaScript</option>
+        </select>
 
-      {/* { <select value={language} onChange={(e) => setLanguage(e.target.value)}style={{ marginLeft: '20px', padding: '10px' }}>
-        <option value=""disabled>Frontend</option>
-        <option value="">Python</option>
-        <option value="">Java</option>
-        <option value="">C++</option>
-        <option value="javscript">JavaScript</option>
-      </select> } */}
+        { <select value={language} onChange={(e) => setLanguage(e.target.value)}style={{ marginLeft: '20px', padding: '10px' }}>
+          <option value=""disabled>Frontend</option>
+          <option value="html">HTML</option>
+          <option value="css">CSS</option>
+          <option value="typescript">TypeScript</option>
+          <option value="javscript">JavaScript</option>
+        </select> }
+      </div>
+
       
       <pre style={{ marginTop: '20px', padding: '20px', background: '#f4f4f4', whiteSpace: 'pre-wrap' }}>
         {code || 'Your code will appear here...'}

@@ -20,3 +20,8 @@ input:focus, select:focus, button:focus {
 button:hover:not(:disabled) {
   background-color: #005a9e !important;
 }
+
+textarea {
+  resize: none;
+  overflow: hidden;
+}
