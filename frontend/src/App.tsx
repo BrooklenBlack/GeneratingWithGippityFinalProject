@@ -53,33 +53,33 @@ function App() {
         {loading ? 'Generating...' : 'Generate'}
         </button>
 
-        <select value={language} onChange={(e) => setLanguage(e.target.value)}style={{ marginLeft: '20px', padding: '10px' }}>
-          <option value=""disabled>Backend</option>
-          <option value="python">Python</option>
-          <option value="java">Java</option>
-          <option value="C++">C++</option>
-          <option value="javascript">JavaScript</option>
+        <select value={language} onChange={(e) => setLanguage(e.target.value)} style={{ marginLeft: '20px', padding: '10px' }}>
+          <option value="" disabled>Select language...</option>
+          <optgroup label="Backend">
+            <option value="python">Python</option>
+            <option value="java">Java</option>
+            <option value="C++">C++</option>
+            <option value="javascript">JavaScript</option>
+          </optgroup>
+          <optgroup label="Frontend">
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="typescript">TypeScript</option>
+            <option value="javascript">JavaScript</option>
+          </optgroup>
         </select>
-
-        { <select value={language} onChange={(e) => setLanguage(e.target.value)}style={{ marginLeft: '20px', padding: '10px' }}>
-          <option value=""disabled>Frontend</option>
-          <option value="html">HTML</option>
-          <option value="css">CSS</option>
-          <option value="typescript">TypeScript</option>
-          <option value="javscript">JavaScript</option>
-        </select> }
       </div>
 
       
-      <pre style={{ marginTop: '20px', padding: '20px', background: '#f4f4f4', whiteSpace: 'pre-wrap' }}>
+      <pre style={{ marginTop: '20px', padding: '20px', background: '#f4f4f4', whiteSpace: 'pre-wrap', wordBreak: 'break-word', minHeight: '50px', height: 'auto', overflow: 'hidden'}}>
         {code || 'Your code will appear here...'}
       </pre>
 
-      <pre style={{ marginTop: '20px', padding: '20px', background: '#f4f4f4', whiteSpace: 'pre-wrap' }}>
+      <pre style={{ marginTop: '20px', padding: '20px', background: '#f4f4f4', whiteSpace: 'pre-wrap', wordBreak: 'break-word', minHeight: '50px', height: 'auto', overflow: 'hidden' }}>
         {output || 'Your output will appear here...'}
       </pre>
 
-      <pre style={{ marginTop: '20px', padding: '20px', background: '#f4f4f4', whiteSpace: 'pre-wrap' }}>
+      <pre style={{ marginTop: '20px', padding: '20px', background: '#f4f4f4', whiteSpace: 'pre-wrap', wordBreak: 'break-word', minHeight: '50px', height: 'auto', overflow: 'hidden' }}>
         {explanation || 'Your explanation will appear here...'}
       </pre>
 
