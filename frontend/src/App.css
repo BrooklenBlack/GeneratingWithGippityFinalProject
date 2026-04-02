@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .App {
@@ -13,14 +13,97 @@ body {
   min-height: 100vh;
 }
 
-input:focus, select:focus, button:focus {
-  outline: 2px solid #007acc;
+/* Main container */
+.app-container {
+  padding: 40px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 25px;
 }
 
+.app-container h1 {
+  margin-bottom: 20px;
+}
+
+/* Textarea styling */
+.prompt-input {
+  width: 500px;
+  padding: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  resize: none;
+  overflow: hidden;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Controls section (button and select) */
+.controls {
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Button styling */
+.generate-btn {
+  padding: 10px 20px;
+  font-family: 'JetBrains Mono', monospace;
+  background-color: #5a6871;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.generate-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Select dropdown styling */
+.language-select {
+  padding: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 18px;
+}
+
+/* Output boxes (code, output, explanation) */
+.output-box {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: #f4f4f4;
+  white-space: pre-wrap;
+  word-break: break-word;
+  min-height: 50px;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 100%;
+  font-family: 'JetBrains Mono', monospace;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 18px;
+}
+
+/* Focus states */
+input:focus, 
+select:focus, 
+button:focus {
+  outline: 2px solid #5a6871;
+}
+
+/* Button hover state */
 button:hover:not(:disabled) {
-  background-color: #005a9e !important;
+  background-color: #5a6871;
 }
 
+/* Textarea general styling */
 textarea {
   resize: none;
   overflow: hidden;

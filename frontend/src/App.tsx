@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './App.css';
 
 function App() {
   const [prompt, setPrompt] = useState('');
@@ -44,23 +45,31 @@ function App() {
 
 
   return (
-    <div style={{ padding: '40px', fontFamily: 'Arial' }}>
+    <div className="app-container">
       <h1>Code Assistant</h1>
       
       <textarea
+        className="prompt-input"
         value={prompt}
         onChange={handlePromptChange}
         placeholder="Please type your request here..."
         rows={1}
-        style={{ width: '500px', padding: '10px', marginRight: '10px', resize: 'none', overflow: 'hidden'}}
       />
       
-      <div>
-        <button onClick={generate} disabled={loading} style={{ padding: '10px 20px', marginTop: '10px' }}>
-        {loading ? 'Generating...' : 'Generate'}
+      <div className="controls">
+        <button 
+          className="generate-btn"
+          onClick={generate} 
+          disabled={loading}
+        >
+          {loading ? 'Generating...' : 'Generate'}
         </button>
 
-        <select value={language} onChange={(e) => setLanguage(e.target.value)} style={{ marginLeft: '20px', padding: '10px' }}>
+        <select 
+          className="language-select"
+          value={language} 
+          onChange={(e) => setLanguage(e.target.value)}
+        >
           <option value="" disabled>Select language...</option>
           <optgroup label="Backend">
             <option value="python">Python</option>
@@ -78,19 +87,15 @@ function App() {
         </select>
       </div>
 
-      
-      <pre style={{ marginTop: '20px', padding: '20px', background: '#f4f4f4', whiteSpace: 'pre-wrap',
-        wordBreak: 'break-word', minHeight: '50px', height: 'auto', overflowX: 'hidden', overflowY: 'auto', width: '100%' }}>
+      <pre className="output-box">
         {code || 'Your code will appear here...'}
       </pre>
 
-      <pre style={{ marginTop: '20px', padding: '20px', background: '#f4f4f4', whiteSpace: 'pre-wrap',
-        wordBreak: 'break-word', minHeight: '50px', height: 'auto', overflowX: 'hidden', overflowY: 'auto', width: '100%' }}>
+      <pre className="output-box">
         {output || 'Your output will appear here...'}
       </pre>
 
-      <pre style={{ marginTop: '20px', padding: '20px', background: '#f4f4f4', whiteSpace: 'pre-wrap',
-        wordBreak: 'break-word', minHeight: '50px', height: 'auto', overflowX: 'hidden', overflowY: 'auto', width: '100%' }}>
+      <pre className="output-box">
         {explanation || 'Your explanation will appear here...'}
       </pre>
 
