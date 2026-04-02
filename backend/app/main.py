@@ -55,7 +55,11 @@ URLS = [
     "https://www.w3schools.com/js/",
     "https://www.geeksforgeeks.org/javascript/javascript-tutorial/",
     "https://web.dev/learn/javascript",
-    "https://www.learn-js.org/"
+    "https://www.learn-js.org/",
+    "https://www.codecademy.com/learn/learn-c-sharp",
+    "https://www.w3schools.com/cs/index.php",
+    "https://www.geeksforgeeks.org/c-sharp/c-sharp-tutorial/",
+    "https://dotnet.microsoft.com/en-us/learn/csharp"
 ]
 
 KNOWLEDGE_BASE = load_web_content(URLS)

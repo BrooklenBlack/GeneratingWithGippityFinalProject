@@ -66,6 +66,7 @@ function App() {
             <option value="python">Python</option>
             <option value="java">Java</option>
             <option value="C++">C++</option>
+            <option value="C#">C#</option>
             <option value="javascript">JavaScript</option>
           </optgroup>
           <optgroup label="Frontend">
