@@ -9,6 +9,13 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [language, setLanguage] = useState('');
 
+  const normalizeText = (text: string) => {
+    if (!text) return '';
+    // Convert escaped newlines/tabs to actual characters so code appears vertically.
+    const decoded = text.replace(/\\n/g, '\n').replace(/\\t/g, '\t');
+    return decoded;
+  };
+
   const generate = async () => {
     setLoading(true);
     try {
@@ -16,9 +23,9 @@ function App() {
         prompt,
         language
       });
-      setCode(res.data.code);
-      setExplanation(res.data.explanation);
-      setOutput(res.data.output);
+      setCode(normalizeText(res.data.code));
+      setExplanation(normalizeText(res.data.explanation));
+      setOutput(normalizeText(res.data.output));
     } catch (error) {
       setCode('Error generating code. Please try again.');
       setOutput('Error generating output. Please try again.');
@@ -71,15 +78,18 @@ function App() {
       </div>
 
       
-      <pre style={{ marginTop: '20px', padding: '20px', background: '#f4f4f4', whiteSpace: 'pre-wrap', wordBreak: 'break-word', minHeight: '50px', height: 'auto', overflow: 'hidden'}}>
+      <pre style={{ marginTop: '20px', padding: '20px', background: '#f4f4f4', whiteSpace: 'pre-wrap',
+        wordBreak: 'break-word', minHeight: '50px', height: 'auto', overflowX: 'hidden', overflowY: 'auto', width: '100%' }}>
         {code || 'Your code will appear here...'}
       </pre>
 
-      <pre style={{ marginTop: '20px', padding: '20px', background: '#f4f4f4', whiteSpace: 'pre-wrap', wordBreak: 'break-word', minHeight: '50px', height: 'auto', overflow: 'hidden' }}>
+      <pre style={{ marginTop: '20px', padding: '20px', background: '#f4f4f4', whiteSpace: 'pre-wrap',
+        wordBreak: 'break-word', minHeight: '50px', height: 'auto', overflowX: 'hidden', overflowY: 'auto', width: '100%' }}>
         {output || 'Your output will appear here...'}
       </pre>
 
-      <pre style={{ marginTop: '20px', padding: '20px', background: '#f4f4f4', whiteSpace: 'pre-wrap', wordBreak: 'break-word', minHeight: '50px', height: 'auto', overflow: 'hidden' }}>
+      <pre style={{ marginTop: '20px', padding: '20px', background: '#f4f4f4', whiteSpace: 'pre-wrap',
+        wordBreak: 'break-word', minHeight: '50px', height: 'auto', overflowX: 'hidden', overflowY: 'auto', width: '100%' }}>
         {explanation || 'Your explanation will appear here...'}
       </pre>
 
