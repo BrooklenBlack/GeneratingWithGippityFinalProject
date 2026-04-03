@@ -1,3 +1,27 @@
+:root[data-theme='light'] {
+  --bg-primary: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+  --border-color: #e0e0e0;
+  --input-bg: #f5f5f5;
+  --input-border: #d0d0d0;
+  --button-bg: #164777;
+  --button-hover: #0052a3;
+  --button-text: #ffffff;
+}
+
+:root[data-theme='dark'] {
+  --bg-primary: #000000;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --border-color: #333333;
+  --input-bg: #1a1a1a;
+  --input-border: #404040;
+  --button-bg: #0066cc;
+  --button-hover: #0052a3;
+  --button-text: #ffffff;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,105 +30,165 @@
 
 body {
   font-family: 'JetBrains Mono', monospace;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.App {
-  background-color: #1e1e1e;
+.app-container {
+  padding: 40px;
+  background-color: var(--bg-primary);
   min-height: 100vh;
 }
 
-/* Main container */
-.app-container {
-  padding: 40px;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 35px;
+}
+
+.theme-toggle {
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  cursor: pointer;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 25px;
+  transition: all 0.3s ease;
 }
 
-.app-container h1 {
-  margin-bottom: 20px;
+.theme-toggle:hover {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border-color: var(--button-bg);
 }
 
-/* Textarea styling */
+.controls {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
 .prompt-input {
   width: 500px;
-  padding: 10px;
-  margin-right: 10px;
-  margin-bottom: 20px;
+  padding: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  border: 2px solid var(--input-border);
+  border-radius: 6px;
   resize: none;
-  overflow: hidden;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 18px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  transition: border-color 0.3s ease;
 }
 
-/* Controls section (button and select) */
-.controls {
-  margin-bottom: 30px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
+.prompt-input:focus {
+  outline: none;
+  border-color: var(--button-bg);
 }
 
-/* Button styling */
 .generate-btn {
-  padding: 10px 20px;
+  padding: 12px 20px;
   font-family: 'JetBrains Mono', monospace;
-  background-color: #5a6871;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
   font-size: 18px;
+  font-weight: 600;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.generate-btn:hover:not(:disabled) {
+  background-color: var(--button-hover);
 }
 
 .generate-btn:disabled {
-  cursor: not-allowed;
   opacity: 0.6;
+  cursor: not-allowed;
 }
 
-/* Select dropdown styling */
 .language-select {
-  padding: 10px;
+  padding: 12px;
   font-family: 'JetBrains Mono', monospace;
-  border: 1px solid #ccc;
-  border-radius: 4px;
   font-size: 18px;
+  font-weight: 600;
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  border: 2px solid var(--input-border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
 }
 
-/* Output boxes (code, output, explanation) */
+.language-select:focus {
+  outline: none;
+  border-color: var(--button-bg);
+}
+
+.outputs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.output-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.output-label {
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  color: var(--text-secondary);
+}
+
 .output-box {
-  margin-top: 20px;
-  margin-bottom: 20px;
   padding: 20px;
-  background: #f4f4f4;
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  border: 2px solid var(--input-border);
+  border-radius: 6px;
+  min-height: 80px;
+  max-height: 400px;
+  overflow: auto;
   white-space: pre-wrap;
   word-break: break-word;
-  min-height: 50px;
-  height: auto;
-  overflow-x: hidden;
-  overflow-y: auto;
-  width: 100%;
-  font-family: 'JetBrains Mono', monospace;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 18px;
+  line-height: 1.6;
 }
 
-/* Focus states */
-input:focus, 
-select:focus, 
-button:focus {
-  outline: 2px solid #5a6871;
-}
+@media (max-width: 768px) {
+  .app-container {
+    padding: 20px;
+  }
 
-/* Button hover state */
-button:hover:not(:disabled) {
-  background-color: #5a6871;
-}
+  .controls {
+    flex-direction: column;
+  }
 
-/* Textarea general styling */
-textarea {
-  resize: none;
-  overflow: hidden;
+  .prompt-input,
+  .generate-btn,
+  .language-select {
+    width: 100%;
+  }
+
+  .header h1 {
+    font-size: 24px;
+  }
 }
